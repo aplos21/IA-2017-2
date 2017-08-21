@@ -73,7 +73,7 @@ estado('santa catarina', 'sc').
 
 
 /*
-capital(?Capital, ?Estado) -> capital do
+capital(?Estado, ?Capital) -> capital do
 - eh Capital de um Estado brasileiro.
 */
 capital('acre', 'rio branco').
