@@ -2,7 +2,7 @@ digraph G {
   // regiao_de(C, R) :- capital(E, C), regiao(R, E).
   C -> R [label="regiao_de", style="dashed"]
   R -> E [label="regiao"]
-  C -> E [label="capital"]
+  E -> C [label="capital"]
 
     /*
   subgraph cluster_0 {
