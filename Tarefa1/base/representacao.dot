@@ -1,4 +1,9 @@
 digraph G {
+  // regiao_de(C, R) :- capital(E, C), regiao(R, E).
+  C -> R [label="regiao_de", style="dashed"]
+  R -> E [label="regiao"]
+  C -> E [label="capital"]
+
     /*
   subgraph cluster_0 {
     style=filled;
@@ -36,6 +41,7 @@ digraph G {
   am[ shape=square ]
   */
 
+  /*
   /// CRIANDO A REGRA avô (usando grafo de relacionamento)
   /// avô(x, y) :- pai(x, z), pai(z, y).
   x -> y [ label="avô", style="dashed" ]
@@ -49,7 +55,7 @@ digraph G {
   x -> y [label="!=", dir="none"]
   p -> x [label="pai"]
   p -> y [label="pai"]
-
+  */
 }
 
 
