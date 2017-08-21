@@ -1,0 +1,59 @@
+digraph G {
+    /*
+  subgraph cluster_0 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    a0 -> a1 -> a2 -> a3;
+    label = "process #1";
+  }
+
+  subgraph cluster_1 {
+    node [style=filled];
+    b0 -> b1 -> b2 -> b3;
+    label = "process #2";
+    color=blue
+  }
+  start -> a0;
+  start -> b0;
+  a1 -> b3;
+  b2 -> a3;
+  a3 -> a0;
+  a3 -> end;
+  b3 -> end;
+
+  start [shape=Mdiamond];
+  end [shape=Msquare];
+    */
+
+
+  /*
+  amazonas -> am        [ label=estado  ]
+  manaus   -> amazonas  [ label=capital ]
+  norte    -> amazonas  [ label=regiao ]
+
+  amazonas[shape=diamond]
+  am[ shape=square ]
+  */
+
+  /// CRIANDO A REGRA avô (usando grafo de relacionamento)
+  /// avô(x, y) :- pai(x, z), pai(z, y).
+  x -> y [ label="avô", style="dashed" ]
+  x -> z [ label="pai" ]
+  z -> y [ label="pai"]
+
+  /// CRIANDO A REGRA irmão
+  /// irmão(x, y) :- pai(p, x), pai(p, y).
+  //edge[constraint=false];
+  x -> y [label="irmão", style="dashed"]
+  x -> y [label="!=", dir="none"]
+  p -> x [label="pai"]
+  p -> y [label="pai"]
+
+}
+
+
+/*
+http://www.graphviz.org/doc/info/attrs.html
+https://dreampuf.github.io/GraphvizOnline/
+*/

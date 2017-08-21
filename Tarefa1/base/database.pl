@@ -36,8 +36,8 @@ regiao('sul', 'santa catarina').
 
 
 /*
-estado(?Estado, ?Sigla)
-- eh um Estado do Brasil.
+estado(?Estado, ?Sigla) -> eh estado
+- eh um Estado do Brasil e tem uma Sigla.
 */
 estado('distrito federal', 'df').
 estado('goiás', 'go').
@@ -73,37 +73,37 @@ estado('santa catarina', 'sc').
 
 
 /*
-capital(?Capital, ?Estado)
+capital(?Capital, ?Estado) -> capital do
 - eh Capital de um Estado brasileiro.
 */
-capital('rio branco', 'acre').
-capital('macapá', 'amapá').
-capital('manaus', 'amazonas').
-capital('belém', 'pará').
-capital('porto velho', 'rondônia').
-capital('boa vista', 'roraima').
-capital('palmas', 'tocantins').
+capital('acre', 'rio branco').
+capital('amapá', 'macapá').
+capital('amazonas', 'manaus').
+capital('pará', 'belém').
+capital('rondônia', 'porto velho').
+capital('roraima', 'boa vista').
+capital('tocantins', 'palmas').
 
-capital('maceió', 'alagoas').
-capital('salvador', 'bahia').
-capital('fortaleza', 'ceará').
-capital('são luís', 'maranhão').
-capital('joão pessoa', 'paraíba').
-capital('recife', 'pernambuco').
-capital('teresina', 'piauí').
-capital('natal', 'rio grande do norte').
-capital('aracaju', 'sergipe').
+capital('alagoas', 'maceió').
+capital('bahia', 'salvador').
+capital('ceará', 'fortaleza').
+capital('maranhão', 'são luís').
+capital('paraíba', 'joão pessoa').
+capital('pernambuco', 'recife').
+capital('piauí', 'teresina').
+capital('rio grande do norte', 'natal').
+capital('sergipe', 'aracaju').
 
-capital('curitiba', 'paraná').
-capital('porto alegre', 'rio grande do sul').
-capital('florianópolis', 'santa catarina').
+capital('paraná', 'curitiba').
+capital('rio grande do sul', 'porto alegre').
+capital('santa catarina', 'florianópolis').
 
-capital('vitória', 'espírito santo').
-capital('belo horizonte', 'minas gerais').
+capital('espírito santo', 'vitória').
+capital('minas gerais', 'belo horizonte').
 capital('rio de janeiro', 'rio de janeiro').
 capital('são paulo', 'são paulo').
 
-capital('brasília', 'distrito federal').
-capital('goiânia', 'goiás').
-capital('cuiabá', 'mato grosso').
-capital('campo grande', 'mato grosso do sul').
+capital('distrito federal', 'brasília').
+capital('goiás', 'goiânia').
+capital('mato grosso', 'cuiabá').
+capital('mato grosso do sul', 'campo grande').
