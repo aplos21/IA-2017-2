@@ -4,23 +4,39 @@
 
 /* ============ REGRAS ============ */
 
-%% estados_da_regiao(+Regiao, -Estados)
-% lista os estados que estaod associados a Regiao.
+%% estados_da_regiao(+Regiao, -Estados) -> sao Estados de uma Regiao.
 estados_da_regiao(Regiao, Estados) :- findall(Estado, ( regiao(Regiao, Estado) ), Estados).
+
+%% regiao_de(?Capital, ?Regiao) -> eh Regiao de uma Capital.
+regiao_de(Capital, Regiao) :-
+    capital(Estado, Capital),
+    regiao(Regiao, Estado).
 
 %% relacao(?P1, ?P2, ?F) -> F eh uma relacao entre P1 e P2
 relacao(P1, P2, F) :-
     member(F, [regiao, estado, capital]),
     call(F, P1, P2).
 
-
 /*
-%% capital_de(?E, ?C) -> a cidade C eh capital do estado E
-capital_de('amazonas', 'manaus').
-capital_de('ceará', 'xx').
+is_list(X) :-
+    var(X), !,
+    fail.
+is_list([]).
+is_list([_|T]) :-
+    is_list(T).
+*/
+/*//FAIL
+existe_regiao(_, []).
+existe_regiao(R, Regiao) :- not( is_list(Regiao) ), memberchk(R, [Regiao]).
+existe_regiao(R, [H|T]) :- existe_regiao(R, H); existe_regiao(R, T).
+% existe_regiao(R, [[Regiao, Dados]|ProximaRegiao]) :-
 */
 /*
-regioes(['norte', 'nordeste', 'centro-oeste', 'sul', 'sudeste']).
+% regs(DR), existe_regiao(_, DR)
+existe_regiao(_, [[_, Info]|_]) :-
+    writeln(Info).
+*/
+
 
 %% lista de [REGIAO, [ [ESTADO, SIGLA, CAPITAL] ] ]
 regs([
@@ -68,6 +84,14 @@ regs([
     ]
 ]).
 
+
+
+/*
+%% capital_de(?E, ?C) -> a cidade C eh capital do estado E
+capital_de('amazonas', 'manaus').
+capital_de('ceará', 'xx').
+regioes(['norte', 'nordeste', 'centro-oeste', 'sul', 'sudeste']).
+
 estados([
     'acre',
     'alagoas',
@@ -101,10 +125,6 @@ estados([
 capitais([
 ]).
 */
-
-
-
-
 
 %% get_estados(?Regiao, -Estados)
 % obter etado por regiao.
