@@ -4,18 +4,65 @@
 
 /* ============ REGRAS ============ */
 
-%% estados_da_regiao(+Regiao, -Estados) -> sao Estados de uma Regiao.
-estados_da_regiao(Regiao, Estados) :- findall(Estado, ( regiao(Regiao, Estado) ), Estados).
+%% regiao_de(?Capital, ?Regiao)
+%% é Regiao de uma Capital.
+% regiao_de(Capital, Regiao) :-
 
-%% regiao_de(?Capital, ?Regiao) -> eh Regiao de uma Capital.
-regiao_de(Capital, Regiao) :-
-    capital(Estado, Capital),
-    regiao(Regiao, Estado).
+%% capital_de(?NomeEstado, ?Capital)
+%% o estado de nome NomeEstado tem a cidade Capital como capital.
+capital_de(NomeEstado, Capital) :-
+    estado_da_regiao(_, [NomeEstado, _, Capital]), !.
 
-%% relacao(?P1, ?P2, ?F) -> F eh uma relacao entre P1 e P2
+
+%% estado(?NomeEstado)
+%% o estado com nome NomeEstado é do Brasil.
+estado(NomeEstado) :- estado(NomeEstado, _), !.
+%% estado(?NomeEstado, ?SiglaEstado)
+%% o estado com nome NomeEstado e sigla SiglaEstado é do Brasil.
+estado(NomeEstado, SiglaEstado) :-
+    estado_da_regiao(_, [ NomeEstado, SiglaEstado, _ ]), !.
+%% estado(?NomeEstado, ?SiglaEstado, ?Capital)
+%% o estado com nome NomeEstado, sigla SiglaEstado e capital Capital é do Brasil.
+estado(NomeEstado, SiglaEstado, Capital) :-
+    estado_da_regiao(_, [ NomeEstado, SiglaEstado, Capital ]), !.
+
+
+%% estado_da_regiao(?Regiao, ?Estado)
+%% o Estado (lista tipo [nome, sigla, capital]) está em Regiao.
+estado_da_regiao(Regiao, Estado) :-
+    regiao(Regiao, EstadosECapitais),
+    estado_da_regiao_(EstadosECapitais, Estado).
+estado_da_regiao_([EstadoCurr|Proximos], Estado) :-
+    Estado = EstadoCurr;
+    estado_da_regiao_(Proximos, Estado).
+/* % versão que retorna apenas nome e sigla
+estado_da_regiao_([[EstadoCurr, Sigla|_]|Proximos], EstadoESigla) :-
+    flatten([EstadoCurr, Sigla], EstadoESigla);
+    estado_da_regiao_(Proximos, EstadoESigla).
+*/
+
+
+%% regiao(?Regiao)
+%% é uma Regiao do Brasil.
+regiao(Regiao) :- regiao(Regiao, _).
+%% regiao(?Regiao, -Dados)
+%% Dados contém estados e capitais da Regiao.
+regiao(Regiao, Dados) :-
+    regioes_estados(Regioes),
+    regiao(Regiao, Regioes, Dados).
+%% regiao(?Regiao, +List, -Dados)
+%% Dados contém estados e capitais da Regiao.
+regiao(Regiao, [RCurr|OutrasRegioes], Dados) :-
+    secondOf(RCurr, Dados), firstOf(RCurr, Regiao);
+    regiao(Regiao, OutrasRegioes, Dados).
+
+
+/*
+%% relacao(?P1, ?P2, ?F) -> F é uma relacao entre P1 e P2
 relacao(P1, P2, F) :-
     member(F, [regiao, estado, capital]),
     call(F, P1, P2).
+*/
 
 /*
 is_list(X) :-
@@ -31,132 +78,20 @@ existe_regiao(R, Regiao) :- not( is_list(Regiao) ), memberchk(R, [Regiao]).
 existe_regiao(R, [H|T]) :- existe_regiao(R, H); existe_regiao(R, T).
 % existe_regiao(R, [[Regiao, Dados]|ProximaRegiao]) :-
 */
-/*
 % regs(DR), existe_regiao(_, DR)
-existe_regiao(_, [[_, Info]|_]) :-
-    writeln(Info).
-*/
+% existe_regiao() :- regs(Regioes),
+% existe_regiao([]).
+% existe_regiao([H|T]) :- existe_regiao(T).
+% existe_regiao(Q, [[_, Info]|_]) :-  Q=Info.
 
-
-%% lista de [REGIAO, [ [ESTADO, SIGLA, CAPITAL] ] ]
-regs([
-    [ 'norte', [
-            ['acre', 'ac', 'rio branco'],
-            ['amapá', 'ap', 'macapá'],
-            ['amazonas', 'am', 'manaus'],
-            ['pará', 'pa', 'belém'],
-            ['rondônia', 'ro', 'porto velho'],
-            ['roraima', 'rr', 'boa vista'],
-            ['tocantins', 'to', 'palmas']
-        ]
-    ],
-    [ 'nordeste', [
-            ['alagoas', 'al', 'maceió'],
-            ['bahia', 'ba', 'salvador'],
-            ['ceará', 'ce', 'fortaleza'],
-            ['maranhão', 'ma', 'são luís'],
-            ['paraíba', 'pb', 'joão pessoa'],
-            ['pernambuco', 'pe', 'recife'],
-            ['piauí', 'pi', 'teresina'],
-            ['rio grande do norte', 'rn', 'natal'],
-            ['sergipe', 'se', 'aracaju']
-        ]
-    ],
-    [ 'sul', [
-            ['paraná', 'pr', 'curitiba'],
-            ['rio grande do sul', 'rs', 'porto alegre'],
-            ['santa catarina', 'sc', 'florianópolis']
-        ]
-    ],
-    [ 'sudeste', [
-            ['espírito santo', 'es', 'vitória'],
-            ['minas gerais', 'mg', 'belo horizonte'],
-            ['rio de janeiro', 'rj', 'rio de janeiro'],
-            ['são paulo', 'sp', 'são paulo']
-        ]
-    ],
-    [ 'centro-oeste', [
-            ['distrito federal', 'df', 'brasília'],
-            ['goiás', 'go', 'goiânia'],
-            ['mato grosso', 'mt', 'cuiabá'],
-            ['mato grosso do sul', 'ms', 'campo grande']
-        ]
-    ]
-]).
-
-
-
-/*
-%% capital_de(?E, ?C) -> a cidade C eh capital do estado E
-capital_de('amazonas', 'manaus').
-capital_de('ceará', 'xx').
-regioes(['norte', 'nordeste', 'centro-oeste', 'sul', 'sudeste']).
-
-estados([
-    'acre',
-    'alagoas',
-    'amapá',
-    'amazonas',
-    'bahia',
-    'ceará',
-    'espírito santo',
-    'distrito federal',
-    'goiás',
-    'maranhão',
-    'mato grosso',
-    'mato grosso do sul',
-    'minas gerais',
-    'paraná',
-    'paraíba',
-    'pará',
-    'pernambuco',
-    'piauí',
-    'rio grande do norte',
-    'rio grande do sul',
-    'rio de janeiro',
-    'rondônia',
-    'roraima',
-    'santa catarina',
-    'sergipe',
-    'são paulo',
-    'tocantins'
-]).
-
-capitais([
-]).
-*/
-
-%% get_estados(?Regiao, -Estados)
-% obter etado por regiao.
-% Regiao: String - nome da regiao desejada.
-% Estados: List - lista de lista com elementos tipo [estado, ]
-% get_estados(Regiao, Estados) :-
-    % regs([[Regiao, Estados]]).
-
-/*
-%% capital(+C)
-% retorna true se C for uma capital.
-% capital(C) :- capital_de(_, C).
-capital(C) :-
-    capitais(Capitais),
-    member(C, Capitais).
-
-
-%% estado(+E)
-% retorna true se E for um estado.
-% estado(E) :- capital_de(E, _).
-estado(E) :-
-    estados(Estados),
-    member(E, Estados).
-
-%% regiao(+R)
-% retorna true se R for uma regiao.
-regiao(R) :-
-    regioes(Regioes),
-    member(R, Regioes).
-*/
 
 /* ========== LIST LIB  ========== */
+
+%% firstOf(+List, ?First)
+firstOf([First|_], First).
+
+%% secondOf(+List, ?Second).
+secondOf([_, Second|_], Second).
 
 %% indexOf(+List, +Element, +Index)
 indexOf([Element|_], Element, 0) :- !.
