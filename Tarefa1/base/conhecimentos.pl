@@ -4,85 +4,69 @@
 
 /* ============ REGRAS ============ */
 
-%% regiao_de(?Capital, ?Regiao)
-%% é Regiao de uma Capital.
-% regiao_de(Capital, Regiao) :-
+%% relacao(?Param1, ?Param2, ?F)
+%% F/2 é uma relacao entre Param1 e Param2.
+%% :- meta_predicate relacao(?, ?, 2).
+relacao(Param1, Param2, F) :-
+    member(F, [regiao, estado, capital]),
+    call(F, Param1, Param2).
 
-%% capital_de(?NomeEstado, ?Capital)
+
+%% capital(?NomeEstado, ?Capital)
+%% "a capital de NomeEstado é Capital"
 %% o estado de nome NomeEstado tem a cidade Capital como capital.
-capital_de(NomeEstado, Capital) :-
+capital(NomeEstado, Capital) :-
     estado_da_regiao(_, [NomeEstado, _, Capital]), !.
 
 
 %% estado(?NomeEstado)
+%% "é um estado do Brasil"
 %% o estado com nome NomeEstado é do Brasil.
-estado(NomeEstado) :- estado(NomeEstado, _), !.
+estado(NomeEstado) :- estado(NomeEstado, _).
+
 %% estado(?NomeEstado, ?SiglaEstado)
+%% "NomeEstado tem sigla SiglaEstado"
 %% o estado com nome NomeEstado e sigla SiglaEstado é do Brasil.
 estado(NomeEstado, SiglaEstado) :-
-    estado_da_regiao(_, [ NomeEstado, SiglaEstado, _ ]), !.
+    estado_da_regiao(_, [ NomeEstado, SiglaEstado, _ ]).
+
 %% estado(?NomeEstado, ?SiglaEstado, ?Capital)
+%% "NomeEstado tem sigla SiglaEstado e capital Capital"
 %% o estado com nome NomeEstado, sigla SiglaEstado e capital Capital é do Brasil.
 estado(NomeEstado, SiglaEstado, Capital) :-
-    estado_da_regiao(_, [ NomeEstado, SiglaEstado, Capital ]), !.
+    estado_da_regiao(_, [ NomeEstado, SiglaEstado, Capital ]).
 
 
 %% estado_da_regiao(?Regiao, ?Estado)
+%% "o estado da Regiao é Estado"
 %% o Estado (lista tipo [nome, sigla, capital]) está em Regiao.
 estado_da_regiao(Regiao, Estado) :-
     regiao(Regiao, EstadosECapitais),
     estado_da_regiao_(EstadosECapitais, Estado).
-estado_da_regiao_([EstadoCurr|Proximos], Estado) :-
-    Estado = EstadoCurr;
-    estado_da_regiao_(Proximos, Estado).
-/* % versão que retorna apenas nome e sigla
-estado_da_regiao_([[EstadoCurr, Sigla|_]|Proximos], EstadoESigla) :-
-    flatten([EstadoCurr, Sigla], EstadoESigla);
-    estado_da_regiao_(Proximos, EstadoESigla).
-*/
+
+estado_da_regiao_([], _).
+estado_da_regiao_([EstadoCurr|_], EstadoCurr).
+estado_da_regiao_([_|Proximos], Estado) :- estado_da_regiao_(Proximos, Estado).
 
 
 %% regiao(?Regiao)
-%% é uma Regiao do Brasil.
+%% "é uma Regiao do Brasil"
+%% retorna true se Regiao é uma das regiões existentes no Brasil.
 regiao(Regiao) :- regiao(Regiao, _).
+
 %% regiao(?Regiao, -Dados)
-%% Dados contém estados e capitais da Regiao.
+%% Dados é uma lista de estados que pretencem a Regiao.
 regiao(Regiao, Dados) :-
     regioes_estados(Regioes),
-    regiao(Regiao, Regioes, Dados).
+    regiao(Regiao, Regioes, Dados), !.
+
 %% regiao(?Regiao, +List, -Dados)
-%% Dados contém estados e capitais da Regiao.
-regiao(Regiao, [RCurr|OutrasRegioes], Dados) :-
-    secondOf(RCurr, Dados), firstOf(RCurr, Regiao);
+%% Dados é uma lista de estados que pretencem a Regiao. E List é a lista de regiões.
+regiao(Regiao, [RegiaoCurr|OutrasRegioes], Dados) :-
+    secondOf(RegiaoCurr, Dados), firstOf(RegiaoCurr, Regiao);
     regiao(Regiao, OutrasRegioes, Dados).
 
 
-/*
-%% relacao(?P1, ?P2, ?F) -> F é uma relacao entre P1 e P2
-relacao(P1, P2, F) :-
-    member(F, [regiao, estado, capital]),
-    call(F, P1, P2).
-*/
-
-/*
-is_list(X) :-
-    var(X), !,
-    fail.
-is_list([]).
-is_list([_|T]) :-
-    is_list(T).
-*/
-/*//FAIL
-existe_regiao(_, []).
-existe_regiao(R, Regiao) :- not( is_list(Regiao) ), memberchk(R, [Regiao]).
-existe_regiao(R, [H|T]) :- existe_regiao(R, H); existe_regiao(R, T).
-% existe_regiao(R, [[Regiao, Dados]|ProximaRegiao]) :-
-*/
-% regs(DR), existe_regiao(_, DR)
-% existe_regiao() :- regs(Regioes),
-% existe_regiao([]).
-% existe_regiao([H|T]) :- existe_regiao(T).
-% existe_regiao(Q, [[_, Info]|_]) :-  Q=Info.
 
 
 /* ========== LIST LIB  ========== */
@@ -107,16 +91,3 @@ remove_elem([Element | Rest], Element, Result) :-
     remove_elem(Rest, Element, Result).
 remove_elem([X | Rest], Element, [X | Result]) :-
     remove_elem(Rest, Element, Result).
-
-
-/*
-:- use_module(library(http/json)).
-:- use_module(library(http/json_convert)).
-
-:- json_object coord(x:float, y:float).
-:- json_object circle(center:coord/2).
-
-test :-
-  prolog_to_json(circle(coord(3.4, 5.6)), JSON_Object),
-  format(user_output, '~w', JSON_Object).
-*/
