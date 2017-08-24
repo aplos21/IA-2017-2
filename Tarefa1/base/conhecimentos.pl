@@ -8,14 +8,21 @@
 %% F/2 é uma relacao entre Param1 e Param2.
 %% :- meta_predicate relacao(?, ?, 2).
 relacao(Param1, Param2, F) :-
-    member(F, [regiao, estado, capital]),
-    call(F, Param1, Param2).
+    member(F, [estado_da_regiao_, capital_de, estado_de]),
+    call(F, Param1, Param2), !.
 
 
-%% capital(?NomeEstado, ?Capital)
+%% estado_de(?Capital, ?NomeEstado)
+%% "o estado de Capital é NomeEstado"
+%% NomeEstado é o estado onde reside a cidade Capital
+estado_de(Capital, NomeEstado) :-
+    capital_de(NomeEstado, Capital).
+
+
+%% capital_de(?NomeEstado, ?Capital)
 %% "a capital de NomeEstado é Capital"
 %% o estado de nome NomeEstado tem a cidade Capital como capital.
-capital(NomeEstado, Capital) :-
+capital_de(NomeEstado, Capital) :-
     estado_da_regiao(_, [NomeEstado, _, Capital]), !.
 
 
@@ -44,9 +51,9 @@ estado_da_regiao(Regiao, Estado) :-
     regiao(Regiao, EstadosECapitais),
     estado_da_regiao_(EstadosECapitais, Estado).
 
-estado_da_regiao_([], _).
+estado_da_regiao_([], _) :- fail.
 estado_da_regiao_([EstadoCurr|_], EstadoCurr).
-estado_da_regiao_([_|Proximos], Estado) :- estado_da_regiao_(Proximos, Estado).
+estado_da_regiao_([_|Proximos], Estado) :- estado_da_regiao_(Proximos, Estado). % FIXME sempre false quando não para no fail
 
 
 %% regiao(?Regiao)
@@ -91,3 +98,7 @@ remove_elem([Element | Rest], Element, Result) :-
     remove_elem(Rest, Element, Result).
 remove_elem([X | Rest], Element, [X | Result]) :-
     remove_elem(Rest, Element, Result).
+
+list_nonempty([], false).
+list_nonempty([_|T], true) :-
+    length(T, _).
