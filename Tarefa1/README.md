@@ -53,12 +53,15 @@ http://www.geonames.org/childrenJSON?geonameId=3469034
     - Quantos habitantes possui
 
 <!-- https://pt.wikipedia.org/wiki/Lista_de_bandeiras_do_Brasil -->
-2. [ ] Estados e Regiões do Brasil (Brasil Político) <!-- https://i.pinimg.com/originals/3f/bd/54/3fbd545b10cbb462d4a6191db79707a8.jpg -->
+2. [ ] Estados e Regiões do Brasil (Brasil Político)
     - Quais as regiões do país
     - Quantas regiões o país tem
     - Qual a capital de cada região
 
 3. [ ] Limites e Fronteiras dos Estados do Brasil
+    - Quais cidades realizam fronteiras com quais países e em qual km <!-- https://pt.wikipedia.org/wiki/Lista_de_pa%C3%ADses_lim%C3%ADtrofes_do_Brasil -->
+    - Quais estados realizam fronteiras com quais países
+    - Quais regiões realizam fronteiras
 
 4. [ ]
 
