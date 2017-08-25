@@ -2,6 +2,14 @@
 :- ['database.pl'].
 
 
+/*
+% OPERATORS http://www.swi-prolog.org/pldoc/man?section=operators
+:- op(700, xfy, [eh_estado_de, eh_capital_do]).
+
+eh_estado_de(NomeEstado, Capital) :- estado_de(Capital, NomeEstado).
+eh_capital_do(Capital, NomeEstado):- capital_de(NomeEstado, Capital).
+*/
+
 /* ============ REGRAS ============ */
 
 %% relacao(?Param1, ?Param2, ?F)
@@ -53,8 +61,7 @@ estado_da_regiao(Regiao, Estado) :-
 
 estado_da_regiao_([], _) :- fail.
 estado_da_regiao_([EstadoCurr|_], EstadoCurr).
-estado_da_regiao_([_|Proximos], Estado) :- estado_da_regiao_(Proximos, Estado). % FIXME sempre false quando não para no fail
-
+estado_da_regiao_([_|Proximos], EstadoCurr) :- estado_da_regiao_(Proximos, EstadoCurr). % FIXME sempre dá false no final por causa do 'fail'
 
 %% regiao(?Regiao)
 %% "é uma Regiao do Brasil"
