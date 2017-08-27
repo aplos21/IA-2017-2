@@ -2,7 +2,7 @@
 
 
 ### Tarefa I - SIEGE (Sistema Inteligente de Ensino de Geografia)
-> 18/08/2017 ⇒ 30/08/2017
+> 18/08/2017 ⇒ 08/09/2017
 
 --------------------
 
