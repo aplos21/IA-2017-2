@@ -109,6 +109,7 @@ http://www.geonames.org/childrenJSON?geonameId=3469034
 19. [ ] Qual é o estado com maior população?
 20. [ ] Qual é o estado com menor população?
 21. [ ] Qual é a população do `Municipio`?
+22. [ ] A cidade `Municipio` é capital _do_/_de_ `Estado`?
 
 
 
