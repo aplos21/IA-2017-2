@@ -1,0 +1,29 @@
+{
+  "name": "siege-telegram-bot",
+  "version": "1.0.0",
+  "description": "Sistema Inteligente de Ensino de Geografia do Brasil para o apliticativo Telegram",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micalevisk/IA-2017-2.git"
+  },
+  "keywords": [
+    "swi-prolog",
+    "telegrambot",
+    "ia"
+  ],
+  "author": "Micael Levi L. C.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/micalevisk/IA-2017-2/issues"
+  },
+  "homepage": "https://github.com/micalevisk/IA-2017-2#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "telegraf": "^3.10.1"
+  }
+}
