@@ -20,7 +20,7 @@ Os fatos disponíveis nos programas dispostos neste diretório são:
 > - `municipio(?Nome, ?NomeEstado)`
 
 Pensando nos fatos em termos de tabela, as relações de integridade referencial foram definidas da seguinte forma:
-<img alt="erdplus.com" src="SIEGE-telegram-bot/src/controllers/prolog/database/diagrama-integridade-referencial.png" width="600">
+<img alt="erdplus.com" src="SIEGE-telegram-bot/src/prolog-controller/database/diagrama-integridade-referencial.png" width="600">
 
 
 
