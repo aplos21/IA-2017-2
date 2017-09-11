@@ -1,6 +1,15 @@
-%% municipio(?Nome, ?NomeEstado)
-%% Nome é o nome de um dos 5.570 municípios do Brasil,
-%% e NomeEstado o nome do seu estado.
+:- encoding(utf8).
+
+/**
+ * municipio(?Nome, ?NomeEstado)
+ *
+ * Nome       = o nome de um dos 5.570 municípios do Brasil
+ * NomeEstado = o nome do estado em que está localizado.
+ *
+ * fontes:
+ * https://github.com/chandez/Estados-Cidades-IBGE
+ * https://pt.wikipedia.org/wiki/Lista_de_estados_brasileiros_por_n%C3%BAmero_de_munic%C3%ADpios
+ */
 
 municipio('acrelândia', 'acre').
 municipio('assis brasil', 'acre').
@@ -24,7 +33,6 @@ municipio('sena madureira', 'acre').
 municipio('senador guiomard', 'acre').
 municipio('tarauacá', 'acre').
 municipio('xapuri', 'acre').
-
 
 municipio('água branca', 'alagoas').
 municipio('anadia', 'alagoas').
@@ -129,7 +137,6 @@ municipio('traipu', 'alagoas').
 municipio('união dos palmares', 'alagoas').
 municipio('viçosa', 'alagoas').
 
-
 municipio('alvarães', 'amazonas').
 municipio('amaturá', 'amazonas').
 municipio('anamã', 'amazonas').
@@ -193,7 +200,6 @@ municipio('uarini', 'amazonas').
 municipio('urucará', 'amazonas').
 municipio('urucurituba', 'amazonas').
 
-
 municipio('amapá', 'amapá').
 municipio('calçoene', 'amapá').
 municipio('cutias', 'amapá').
@@ -210,7 +216,6 @@ municipio('santana', 'amapá').
 municipio('serra do navio', 'amapá').
 municipio('tartarugalzinho', 'amapá').
 municipio('vitória do jari', 'amapá').
-
 
 municipio('abaíra', 'bahia').
 municipio('abaré', 'bahia').
@@ -630,7 +635,6 @@ municipio('wanderley', 'bahia').
 municipio('wenceslau guimarães', 'bahia').
 municipio('xique-xique', 'bahia').
 
-
 municipio('abaiara', 'ceará').
 municipio('acarapé', 'ceará').
 municipio('acaraú', 'ceará').
@@ -816,7 +820,6 @@ municipio('varjota', 'ceará').
 municipio('várzea alegre', 'ceará').
 municipio('viçosa do ceará', 'ceará').
 
-
 municipio('águas claras', 'distrito federal').
 municipio('brasília', 'distrito federal').
 municipio('brazlândia', 'distrito federal').
@@ -848,7 +851,6 @@ municipio('sudoeste/octogonal', 'distrito federal').
 municipio('taguatinga', 'distrito federal').
 municipio('varjão', 'distrito federal').
 municipio('vicente pires', 'distrito federal').
-
 
 municipio('afonso cláudio', 'espírito santo').
 municipio('água doce do norte', 'espírito santo').
@@ -928,7 +930,6 @@ municipio('vila pavão', 'espírito santo').
 municipio('vila valério', 'espírito santo').
 municipio('vila velha', 'espírito santo').
 municipio('vitória', 'espírito santo').
-
 
 municipio('abadia de goiás', 'goiás').
 municipio('abadiânia', 'goiás').
@@ -1177,7 +1178,6 @@ municipio('vicentinópolis', 'goiás').
 municipio('vila boa', 'goiás').
 municipio('vila propício', 'goiás').
 
-
 municipio('açailândia', 'maranhão').
 municipio('afonso cunha', 'maranhão').
 municipio('água doce do maranhão', 'maranhão').
@@ -1395,7 +1395,6 @@ municipio('vila nova dos martírios', 'maranhão').
 municipio('vitória do mearim', 'maranhão').
 municipio('vitorino freire', 'maranhão').
 municipio('zé doca', 'maranhão').
-
 
 municipio('abadia dos dourados', 'minas gerais').
 municipio('abaeté', 'minas gerais').
@@ -2251,7 +2250,6 @@ municipio('visconde do rio branco', 'minas gerais').
 municipio('volta grande', 'minas gerais').
 municipio('wenceslau braz', 'minas gerais').
 
-
 municipio('água clara', 'mato grosso do sul').
 municipio('alcinópolis', 'mato grosso do sul').
 municipio('amambaí', 'mato grosso do sul').
@@ -2329,7 +2327,6 @@ municipio('taquarussu', 'mato grosso do sul').
 municipio('terenos', 'mato grosso do sul').
 municipio('três lagoas', 'mato grosso do sul').
 municipio('vicentina', 'mato grosso do sul').
-
 
 municipio('acorizal', 'mato grosso').
 municipio('água boa', 'mato grosso').
@@ -2470,7 +2467,6 @@ municipio('várzea grande', 'mato grosso').
 municipio('vera', 'mato grosso').
 municipio('vila bela da santíssima trindade', 'mato grosso').
 municipio('vila rica', 'mato grosso').
-
 
 municipio('abaetetuba', 'pará').
 municipio('abel figueiredo', 'pará').
@@ -2615,7 +2611,6 @@ municipio('vigia', 'pará').
 municipio('viseu', 'pará').
 municipio('vitória do xingu', 'pará').
 municipio('xinguara', 'pará').
-
 
 municipio('água branca', 'paraíba').
 municipio('aguiar', 'paraíba').
@@ -2841,7 +2836,6 @@ municipio('vieirópolis', 'paraíba').
 municipio('vista serrana', 'paraíba').
 municipio('zabelê', 'paraíba').
 
-
 municipio('abreu e lima', 'pernambuco').
 municipio('afogados da ingazeira', 'pernambuco').
 municipio('afrânio', 'pernambuco').
@@ -3027,7 +3021,6 @@ municipio('vertentes', 'pernambuco').
 municipio('vicência', 'pernambuco').
 municipio('vitória de santo antão', 'pernambuco').
 municipio('xexéu', 'pernambuco').
-
 
 municipio('acauã', 'piauí').
 municipio('agricolândia', 'piauí').
@@ -3251,7 +3244,6 @@ municipio('várzea grande', 'piauí').
 municipio('vera mendes', 'piauí').
 municipio('vila nova do piauí', 'piauí').
 municipio('wall ferraz', 'piauí').
-
 
 municipio('abatiá', 'paraná').
 municipio('adrianópolis', 'paraná').
@@ -3653,7 +3645,6 @@ municipio('vitorino', 'paraná').
 municipio('wenceslau braz', 'paraná').
 municipio('xambrê', 'paraná').
 
-
 municipio('angra dos reis', 'rio de janeiro').
 municipio('aperibé', 'rio de janeiro').
 municipio('araruama', 'rio de janeiro').
@@ -3746,7 +3737,6 @@ municipio('valença', 'rio de janeiro').
 municipio('varre-sai', 'rio de janeiro').
 municipio('vassouras', 'rio de janeiro').
 municipio('volta redonda', 'rio de janeiro').
-
 
 municipio('acari', 'rio grande do norte').
 municipio('açu', 'rio grande do norte').
@@ -3916,7 +3906,6 @@ municipio('vera cruz', 'rio grande do norte').
 municipio('viçosa', 'rio grande do norte').
 municipio('vila flor', 'rio grande do norte').
 
-
 municipio('alta floresta d\'oeste', 'rondônia').
 municipio('alto alegre dos parecis', 'rondônia').
 municipio('alto paraíso', 'rondônia').
@@ -3970,7 +3959,6 @@ municipio('vale do anari', 'rondônia').
 municipio('vale do paraíso', 'rondônia').
 municipio('vilhena', 'rondônia').
 
-
 municipio('alto alegre', 'roraima').
 municipio('amajari', 'roraima').
 municipio('boa vista', 'roraima').
@@ -3986,7 +3974,6 @@ municipio('rorainópolis', 'roraima').
 municipio('são joão da baliza', 'roraima').
 municipio('são luiz', 'roraima').
 municipio('uiramutã', 'roraima').
-
 
 municipio('aceguá', 'rio grande do sul').
 municipio('água santa', 'rio grande do sul').
@@ -4485,7 +4472,6 @@ municipio('vitória das missões', 'rio grande do sul').
 municipio('westfália', 'rio grande do sul').
 municipio('xangri-lá', 'rio grande do sul').
 
-
 municipio('abdon batista', 'santa catarina').
 municipio('abelardo luz', 'santa catarina').
 municipio('agrolândia', 'santa catarina').
@@ -4780,7 +4766,6 @@ municipio('xavantina', 'santa catarina').
 municipio('xaxim', 'santa catarina').
 municipio('zortéa', 'santa catarina').
 
-
 municipio('amparo de são francisco', 'sergipe').
 municipio('aquidabã', 'sergipe').
 municipio('aracaju', 'sergipe').
@@ -4856,7 +4841,6 @@ municipio('telha', 'sergipe').
 municipio('tobias barreto', 'sergipe').
 municipio('tomar do geru', 'sergipe').
 municipio('umbaúba', 'sergipe').
-
 
 municipio('adamantina', 'são paulo').
 municipio('adolfo', 'são paulo').
@@ -5503,7 +5487,6 @@ municipio('vitória brasil', 'são paulo').
 municipio('votorantim', 'são paulo').
 municipio('votuporanga', 'são paulo').
 municipio('zacarias', 'são paulo').
-
 
 municipio('abreulândia', 'tocantins').
 municipio('aguiarnópolis', 'tocantins').

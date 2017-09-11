@@ -1,6 +1,12 @@
-%% regiao(?Nome, ?QuantidadeEstados)
-%% Nome é o nome de uma das 5 regiões que o Brasil possui,
-%% e a quantidade QuantidadeEstados de estados que ela delimita.
+/**
+ * regiao(?Nome, ?QuantidadeEstados)
+ *
+ * Nome              = nome de de uma das 5 regiões que o Brasil possui
+ * QuantidadeEstados = o número de estados que esta região delimita
+ *
+ * fonte:
+ * https://github.com/chandez/Estados-Cidades-IBGE
+ */
 
 regiao('norte', 7).
 regiao('nordeste', 9).
