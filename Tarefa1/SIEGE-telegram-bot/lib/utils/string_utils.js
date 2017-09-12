@@ -2,6 +2,7 @@
  * Parser de string para HTML
  */
 
+/* eslint-disable */
 String.prototype.isEmpty = function ()    { return !this.trim() ; }
 String.prototype.asBold  = function ()    { return `<b>${this}</b>` ; }
 String.prototype.asItalic= function ()    { return `<i>${this}</i>` ; }
