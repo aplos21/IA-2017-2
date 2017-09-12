@@ -2,7 +2,7 @@ require('../../lib/typedefs')
 const { listToArray } = require('../../lib/utils/object_utils');
 
 /**
- * qual a capital de Estado?
+ * qual é a capital de Estado
  * @type {PropertiesQueryHandler}
  */
 const q1 = {
@@ -14,7 +14,7 @@ const q1 = {
 }
 
 /**
- *
+ * qual é a capital do Brasil
  * @type {PropertiesQueryHandler}
  */
 const q2 = {
@@ -26,7 +26,7 @@ const q2 = {
 }
 
 /**
- *
+ * a cidade Municpio é capital do/de Estado
  * @type {PropertiesQueryHandler}
  */
 const q3 = {
@@ -38,7 +38,7 @@ const q3 = {
 }
 
 /**
- *
+ * existe algum estado cuja capital tem o mesmo nome do Estado
  * @type {PropertiesQueryHandler}
  */
 const q4 = {
@@ -50,7 +50,7 @@ const q4 = {
 }
 
 /**
- *
+ * Municipio é a capital de qual estado
  * @type {PropertiesQueryHandler}
  */
 const q5 = {
@@ -62,7 +62,7 @@ const q5 = {
 }
 
 /**
- *
+ * Municipio é a capital do/de Estado
  * @type {PropertiesQueryHandler}
  */
 const q6 = {
@@ -74,19 +74,19 @@ const q6 = {
 }
 
 /**
- *
+ * Municipio é a capital de algum estado
  * @type {PropertiesQueryHandler}
  */
 const q7 = {
-  consulta: ({ Municipio }) => `capital(_, ${Municipio})`,
+  consulta: ({ Municipio }) => `capital(Estado, ${Municipio})`,
   controlador: async (query) => {
     const result = await query.next()
-    return !!result
+    return { estado: result.Estado }
   }
 }
 
 /**
- *
+ * qual é o estado que tem mais cidades
  * @type {PropertiesQueryHandler}
  */
 const q8 = {
@@ -98,7 +98,7 @@ const q8 = {
 }
 
 /**
- *
+ * qual é o estado que tem menos cidades
  * @type {PropertiesQueryHandler}
  */
 const q9 = {
@@ -110,7 +110,7 @@ const q9 = {
 }
 
 /**
- *
+ * quais são os estados que compõem a regiao Regiao
  * @type {PropertiesQueryHandler}
  */
 const q10 = {
@@ -122,7 +122,7 @@ const q10 = {
 }
 
 /**
- *
+ * quais são as regiões que possuem até Numero estados
  * @type {PropertiesQueryHandler}
  */
 const q11 = {
@@ -134,7 +134,7 @@ const q11 = {
 }
 
 /**
- *
+ * quantos estados tem o Brasil
  * @type {PropertiesQueryHandler}
  */
 const q12 = {
@@ -146,7 +146,7 @@ const q12 = {
 }
 
 /**
- *
+ * quantos estados a região Regiao tem
  * @type {PropertiesQueryHandler}
  */
 const q13 = {
@@ -158,7 +158,7 @@ const q13 = {
 }
 
 /**
- *
+ * quantas cidades o estado do/de Estado tem
  * @type {PropertiesQueryHandler}
  */
 const q14 = {
@@ -170,7 +170,7 @@ const q14 = {
 }
 
 /**
- *
+ * a cidade Municipio está em qual estado
  * @type {PropertiesQueryHandler}
  */
 const q15 = {
@@ -182,7 +182,7 @@ const q15 = {
 }
 
 /**
- *
+ * o estado do/de Estado fica na região Regiao
  * @type {PropertiesQueryHandler}
  */
 const q16 = {
@@ -194,7 +194,7 @@ const q16 = {
 }
 
 /**
- *
+ * Estado fica em qual região
  * @type {PropertiesQueryHandler}
  */
 const q17 = {
@@ -206,7 +206,7 @@ const q17 = {
 }
 
 /**
- *
+ * Municipio fica em qual regiao
  * @type {PropertiesQueryHandler}
  */
 const q18 = {
@@ -218,7 +218,7 @@ const q18 = {
 }
 
 /**
- *
+ * qual é o tamanho territorial do/de estado
  * @type {PropertiesQueryHandler}
  */
 const q19 = {
@@ -230,7 +230,7 @@ const q19 = {
 }
 
 /**
- *
+ * qual é o estado de maiior tamanho
  * @type {PropertiesQueryHandler}
  */
 const q20 = {
@@ -242,7 +242,7 @@ const q20 = {
 }
 
 /**
- *
+ * qual é o estado de menor tamanho
  * @type {PropertiesQueryHandler}
  */
 const q21 = {
@@ -254,7 +254,7 @@ const q21 = {
 }
 
 /**
- *
+ * qual é o tamanho territorial do Brasil
  * @type {PropertiesQueryHandler}
  */
 const q22 = {
@@ -266,7 +266,7 @@ const q22 = {
 }
 
 /**
- *
+ * quais são os estados de maior e menor tamanho
  * @type {PropertiesQueryHandler}
  */
 const q23 = {
