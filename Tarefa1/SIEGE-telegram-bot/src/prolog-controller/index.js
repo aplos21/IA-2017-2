@@ -1,70 +1,95 @@
+/* eslint semi: 2 */
+/* eslint-disable no-await-in-loop, no-cond-assign */
 
-// ----------------------------------------------- //
-const { PATH_MAIN_PL, querys } = require('./config');
-const swipl  = require('swipl-stdio');
-const engine = new swipl.Engine();
-// ----------------------------------------------- //
+// --------------------------------- //
+require('../../lib/typedefs');
+const swipl = require('swipl-stdio');
+// --------------------------------- //
 
-(async () => {
-  const c = await engine.call(`consult('${PATH_MAIN_PL}')`)
-  if (!c) {
-    throw Error('Call failed')
+/**
+ * Define um texto já classificado.
+ * Com metadados para facilitar o processamento
+ * da informação textual.
+ * @class PrologController
+ */
+class PrologController {
+
+  /**
+   *
+   * @param {string} pathInitialProgram
+   */
+  constructor(pathInitialProgram) {
+    this.pathInitialProgram = pathInitialProgram.trim();
   }
 
-  const query = await engine.createQuery( querys.q23() )
+  /**
+   *
+   * @param {string} query
+   * @param {AsyncCallback} cb
+   */
+  executeQuery(query, cb) {
+    if (typeof cb !== 'function') throw TypeError('"cb" must be an callback');
+    return executeQuery(this.pathInitialProgram, query, cb)
+          .catch((err) => { throw Error('[executequery]', err); });
+  }
 
+  /**
+   *
+   * @param {PropertiesQueryHandler} queryHandler
+   * @param {object} [queryInputs={}]
+   */
+  executeQueryWithHandler(queryHandler, queryInputs = {}) {
+    return this.executeQuery(queryHandler.consulta(queryInputs), queryHandler.controlador);
+  }
+
+}
+
+/**
+ *
+ * @param {string} initialProgram
+ * @param {string} strQuery
+ * @param {AsyncCallback} callback
+ */
+async function executeQuery(initialProgram, strQuery, callback) {
+  const engine = new swipl.Engine();
+  const call   = await engine.call(`consult('${initialProgram}')`);
+  if (!call) throw Error('Consult Failed!');
+
+  let response;
+  const query = await engine.createQuery(strQuery);
   try {
-    let result;
-    while (result = await query.next()) {
-      console.log(
-        listToArray(result)
-      )
-    }
+    response = await callback(query);
   } finally {
-    await query.close()
+    await query.close();
   }
 
-  engine.close()
-})().catch(err => console.log(err))
-
-
-//============================================== lib ==============================================//
-
-/**
- * Recupera todas as chaves de um objeto.
- * @param {object} obj
- * @return {array} As chaves em um array unidimensional
- */
-function getValuesOf(obj){
-  return Object.keys(obj).reduce((acum, curr) => acum.concat(obj[curr]), []);
-}
-
-/**
- * Recupera todas as chaves do objeto
- * em um array, recursivamente.
- * @param {object} obj
- * @param {array} [arr=[]]
- * @return {array}
- */
-function flattenObject(obj, arr = []){
-  const valores = getValuesOf(obj);
-  return valores.reduce((acum, curr) => {
-    if (typeof curr === 'object') return flattenObject(curr, acum);
-    else acum.push(curr);
-    return acum;
-  }, arr);
+  engine.close();
+  return response;
 }
 
 
-/**
- * Exclusivo para o 'swipl-stdio',
- * converte uma lista retornada pela query prolog
- * em um array.
- * @param {object} listAsObj - A representação da lista em objetos
- * @return {array} A lista como array do JS
- */
-function listToArray(listAsObj){
-  const list = flattenObject(listAsObj)
-  list.splice(-1)
-  return list
-}
+// ===================================== external ===================================== //
+
+/*
+const { PATH_MAIN_PL, querys } = require('./config');
+const plg = new PrologController(PATH_MAIN_PL);
+
+// ==== in-line
+plg.executeQuery( 'append([1], [1,2], L)', async (query) => {
+  let result;
+  while (result = await query.next()) {
+    console.log( result );
+  }
+});
+*/
+
+
+/* ======== testando
+plg.executeQueryWithHandler(querys.q2).then((r) => {
+  console.log(r);
+});
+
+plg.executeQueryWithHandler(querys.q3, { Estado: 'amazonas', Municipio: 'manaus' }).then((r) => {
+  console.log(r);
+});
+*/

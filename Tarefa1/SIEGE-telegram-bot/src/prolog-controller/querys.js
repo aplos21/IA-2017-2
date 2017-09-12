@@ -1,160 +1,281 @@
+require('../../lib/typedefs')
+const { listToArray } = require('../../lib/utils/object_utils');
 
 /**
  * qual a capital de Estado?
- * @param {string} Estado
- * @return {string} Saída em 'NomeCapital'
+ * @type {PropertiesQueryHandler}
  */
-const q1 = (Estado) => `capital(${Estado}, NomeCapital)`
+const q1 = {
+  consulta: Estado => `capital(${Estado}, NomeCapital)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { nomeCapital: result.NomeCapital }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'Capital'
+ * @type {PropertiesQueryHandler}
  */
-const q2 = () => `capital(brasil, Capital)`
+const q2 = {
+  consulta: () => 'capital(brasil, Capital)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { capital: result.Capital }
+  }
+}
 
 /**
  *
- * @param {string} Estado
- * @param {string} Municipio
- * @return {string} Retorno boolean
+ * @type {PropertiesQueryHandler}
  */
-const q3 = (Estado, Municipio) => `capital(${Estado}, ${Municipio})`
+const q3 = {
+  consulta: ({ Estado, Municipio }) => `capital(${Estado}, ${Municipio})`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return !!result
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'Existe'
+ * @type {PropertiesQueryHandler}
  */
-const q4 = () => 'findall(E, capital(E,E), L), list_nonempty(L, Existe)'
+const q4 = {
+  consulta: () => 'findall(E, capital(E,E), Quais), list_nonempty(Quais, Existe)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { quais: listToArray(result.Quais), existe: !!result.Existe }
+  }
+}
 
 /**
  *
- * @param {string} Municipio
- * @return {string} Saída em 'NomeEstado', se a consulta der true
+ * @type {PropertiesQueryHandler}
  */
-const q5 = (Municipio) => `capital(NomeEstado, ${Municipio})`
+const q5 = {
+  consulta: ({ Municipio }) => `capital(NomeEstado, ${Municipio})`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { nomeEstado: result.NomeEstado }
+  }
+}
 
 /**
  *
- * @param {string} Estado
- * @param {string} Municipio
- * @return {string} Retorno boolean
+ * @type {PropertiesQueryHandler}
  */
-const q6 = (Estado, Municipio) => `capital(${Estado}, ${Municipio})`
+const q6 = {
+  consulta: ({ Estado, Municipio }) => `capital(${Estado}, ${Municipio})`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return !!result
+  }
+}
 
 /**
  *
- * @param {string} Municipio
- * @return {string} Retorno boolean
+ * @type {PropertiesQueryHandler}
  */
-const q7 = (Municipio) => `capital(_, ${Municipio})`
+const q7 = {
+  consulta: ({ Municipio }) => `capital(_, ${Municipio})`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return !!result
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'Estado' e 'QtdMunicipios'
+ * @type {PropertiesQueryHandler}
  */
-const q8 = () => `estados_municipios(_, E), first(E, Estado-QtdMunicipios)`
+const q8 = {
+  consulta: () => 'estados_municipios(_, E), first(E, Estado-QtdMunicipios)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { estado: result.Estado, qtdMunicipios: result.QtdMunicipios }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'Estado' e 'QtdMunicipios'
+ * @type {PropertiesQueryHandler}
  */
-const q9 = () => `estados_municipios(_, E), last(E, Estado-QtdMunicipios)`
+const q9 = {
+  consulta: () => 'estados_municipios(_, E), last(E, Estado-QtdMunicipios)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { estado: result.Estado, qtdMunicipios: result.QtdMunicipios }
+  }
+}
 
 /**
  *
- * @param {string} Regiao
- * @return {string} Saída em 'ListaEstados'
+ * @type {PropertiesQueryHandler}
  */
-const q10 = (Regiao) => `findall(E, estado(E,_,${Regiao},_), ListaEstados)`
+const q10 = {
+  consulta: ({ Regiao }) => `findall(E, estado(E,_,${Regiao},_), ListaEstados)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { listaEstados: listToArray(result.ListaEstados) }
+  }
+}
 
 /**
  *
- * @param {string} Numero
- * @return {string} Saída em 'ListaRegioes'
+ * @type {PropertiesQueryHandler}
  */
-const q11 = (Numero) => `findall(R, (regiao(R, Q), Q =< ${Numero}), ListaRegioes)`
-
+const q11 = {
+  consulta: ({ Numero }) => `findall(R, (regiao(R, Q), Q =< ${Numero}), ListaRegioes)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { listaRegioes: listToArray(result.ListaRegioes) }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'QtdEstados'
+ * @type {PropertiesQueryHandler}
  */
-const q12 = () => `findall(QtdEstados, regiao(_, QtdEstados), L), sum_list(L, QtdEstados)`
-
-
-/**
- *
- * @param {string} Regiao
- * @return {string} Saída em 'QtdEstados'
- */
-const q13 = (Regiao) => `regiao(${Regiao}, QtdEstados)`
+const q12 = {
+  consulta: () => 'findall(QtdEstados, regiao(_, QtdEstados), L), sum_list(L, QtdEstados)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { qtdEstados: result.QtdEstados }
+  }
+}
 
 /**
  *
- * @param {string} Estado
- * @return {string} Saída em 'QtdMunicipios'
+ * @type {PropertiesQueryHandler}
  */
-const q14 = (Estado) => `municipios(${Estado}, L), length(L, QtdMunicipios)`
+const q13 = {
+  consulta: ({ Regiao }) => `regiao(${Regiao}, QtdEstados)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { qtdEstados: result.QtdEstados }
+  }
+}
 
 /**
  *
- * @param {string} Municipio
- * @return {string} Saída em 'Estado'
+ * @type {PropertiesQueryHandler}
  */
-const q15 = (Municipio) => `municipio(${Municipio}, Estado)`
+const q14 = {
+  consulta: ({ Estado }) => `municipios(${Estado}, Municipios), length(Municipios, QtdMunicipios)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { municipios: listToArray(result.Municipios), qtdMunicipios: result.QtdMunicipios }
+  }
+}
 
 /**
  *
- * @param {string} Estado
- * @param {string} Regiao
- * @return {string} Retorno boolean
+ * @type {PropertiesQueryHandler}
  */
-const q16 = (Estado, Regiao) => `estado(${Estado}, _, ${Regiao}, _)`
+const q15 = {
+  consulta: ({ Municipio }) => `municipio(${Municipio}, Estado)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { estado: result.Estado }
+  }
+}
 
 /**
  *
- * @param {string} Estado
- * @return {string} Saída em 'Regiao'
+ * @type {PropertiesQueryHandler}
  */
-const q17 = (Estado) => `estado(${Estado}, _, Regiao, _)`
+const q16 = {
+  consulta: ({ Estado, Regiao }) => `estado(${Estado}, _, ${Regiao}, _)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return !!result
+  }
+}
 
 /**
  *
- * @param {string} Municipio
- * @return {string} Saída em 'Regiao'
+ * @type {PropertiesQueryHandler}
  */
-const q18 = (Municipio) => `municipio(${Municipio}, Estado), estado(Estado, _, Regiao, _)`
+const q17 = {
+  consulta: ({ Estado }) => `estado(${Estado}, _, Regiao, _)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { regiao: result.Regiao }
+  }
+}
 
 /**
  *
- * @param {string} Estado
- * @return {string} Saída em 'Tamanho'
+ * @type {PropertiesQueryHandler}
  */
-const q19 = (Estado) => `tamanho(${Estado}, Tamanho)`
+const q18 = {
+  consulta: ({ Municipio }) => `municipio(${Municipio}, Estado), estado(Estado, _, Regiao, _)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { estado: result.Estado, regiao: result.Regiao }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'MenorEstado', extra: 'MenorArea'
+ * @type {PropertiesQueryHandler}
  */
-const q20 = () => `menor_area(MenorArea, MenorEstado)`
+const q19 = {
+  consulta: ({ Estado }) => `tamanho(${Estado}, Tamanho)`,
+  controlador: async (query) => {
+    const result = await query.next()
+    return { tamanho: result.Tamanho }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'MaiorEstado', extra: 'MaiorArea'
+ * @type {PropertiesQueryHandler}
  */
-const q21 = () => `maior_area(MaiorArea, MaiorEstado)`
+const q20 = {
+  consulta: () => 'menor_area(MenorArea, MenorEstado)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { menorArea: result.MenorArea, menorEstado: result.MenorEstado }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'TamanhoTotal'
+ * @type {PropertiesQueryHandler}
  */
-const q22 = () => `tamanho(brasil, TamanhoTotal)`
+const q21 = {
+  consulta: () => 'maior_area(MaiorArea, MaiorEstado)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { maiorArea: result.MaiorArea, maiorEstado: result.MaiorEstado }
+  }
+}
 
 /**
  *
- * @return {string} Saída em 'MaiorEstado' e 'MenorEstado'
+ * @type {PropertiesQueryHandler}
  */
-const q23 = () => `maior_area(MaiorArea, MaiorEstado), menor_area(MenorArea, MenorEstado)`
+const q22 = {
+  consulta: () => 'tamanho(brasil, TamanhoTotal)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { tamanhoTotal: result.TamanhoTotal }
+  }
+}
+
+/**
+ *
+ * @type {PropertiesQueryHandler}
+ */
+const q23 = {
+  consulta: () => 'maior_area(MaiorArea, MaiorEstado), menor_area(MenorArea, MenorEstado)',
+  controlador: async (query) => {
+    const result = await query.next()
+    return { maiorEstado: result.MaiorEstado, maiorArea: result.MaiorArea, menorEstado: result.MenorEstado, menorArea: result.MenorArea }
+  }
+}
 
 
 // ------------ //
