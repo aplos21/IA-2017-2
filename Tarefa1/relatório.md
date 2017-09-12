@@ -135,8 +135,8 @@ http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm
 | 1   | `capital(+Estado, NomeCapital)`                                             | __NomeCapital__                  |
 | 2   | `capital(brasil, Capital).`                                                 | __Capital__                      |
 | 3   | `capital(+Estado, +Municipio)`                                              | _boolean_                        |
-| 4   | `findall(E, capital(E,E), L), list_nonempty(L, Existe).`                    | __Existe__                       |
-| 5   | `capital(NomeEstado, +Municipio)`                                           | _boolean_                        |
+| 4   | `findall(E, capital(E,E), Quais), list_nonempty(Quais, Existe).`            | __Existe__                       |
+| 5   | `capital(NomeEstado, +Municipio)`                                           | __NomeEstado__                   |
 | 6   | `capital(+Estado, +Municipio)`                                              | _boolean_                        |
 | 7   | `capital(_, +Municipio)`                                                    | _boolean_                        |
 | 8   | `estados_municipios(_, E), first(E, Estado-QtdMunicipios).`                 | __Estado__, __QtdMunicipios__    |
@@ -145,7 +145,7 @@ http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm
 | 11  | `findall(R, (regiao(R, Q), Q =< +Numero), ListaRegioes)`                    | __ListaRegioes__                 |
 | 12  | `findall(QtdEstados, regiao(_, QtdEstados), L), sum_list(L, QtdEstados).`   | __QtdEstados__                   |
 | 13  | `regiao(+Regiao, QtdEstados)`                                               | __QtdEstados__                   |
-| 14  | `municipios(+Estado, L), length(L, QtdMunicipios)`                          | __QtdMunicipios__                |
+| 14  | `municipios(+Estado, Municipios), length(Municipios, QtdMunicipios)`        | __QtdMunicipios__                |
 | 15  | `municipio(+Municipio, Estado)`                                             | __Estado__                       |
 | 16  | `estado(+Estado, _, +Regiao, _)`                                            | _boolean_                        |
 | 17  | `estado(+Estado, _, Regiao, _)`                                             | __Regiao__                       |
