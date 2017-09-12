@@ -12,15 +12,13 @@ const qq = require('./questions_and_queries')
  * @property {xx} xx
  */
 class Brain {
-
   /**
    * @method Brain#get
    * @param {string} conective
    */
-  get(conective){
+  get(conective) {
     return qq[conective]
   }
-
 }
 
 //========================//
