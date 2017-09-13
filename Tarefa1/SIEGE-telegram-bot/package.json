@@ -27,6 +27,7 @@
   "homepage": "https://github.com/micalevisk/IA-2017-2#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "natural": "^0.5.4",
     "swipl-stdio": "^1.0.3",
     "telegraf": "^3.10.1"
   },
