@@ -1,5 +1,5 @@
 require('../../lib/typedefs')
-const { listToArray } = require('../../lib/utils/object_utils');
+const { prologlistToArray } = require('../../lib/utils/object_utils');
 
 /**
  * qual é a capital de Estado
@@ -45,7 +45,7 @@ const q4 = {
   consulta: () => 'findall(E, capital(E,E), Quais), list_nonempty(Quais, Existe)',
   controlador: async (query) => {
     const result = await query.next()
-    return { quais: listToArray(result.Quais), existe: !!result.Existe }
+    return { quais: prologlistToArray(result.Quais), existe: !!result.Existe }
   }
 }
 
@@ -117,7 +117,7 @@ const q10 = {
   consulta: ({ Regiao }) => `findall(E, estado(E,_,${Regiao},_), ListaEstados)`,
   controlador: async (query) => {
     const result = await query.next()
-    return { listaEstados: listToArray(result.ListaEstados) }
+    return { listaEstados: prologlistToArray(result.ListaEstados) }
   }
 }
 
@@ -129,7 +129,7 @@ const q11 = {
   consulta: ({ Numero }) => `findall(R, (regiao(R, Q), Q =< ${Numero}), ListaRegioes)`,
   controlador: async (query) => {
     const result = await query.next()
-    return { listaRegioes: listToArray(result.ListaRegioes) }
+    return { listaRegioes: prologlistToArray(result.ListaRegioes) }
   }
 }
 
@@ -165,7 +165,7 @@ const q14 = {
   consulta: ({ Estado }) => `municipios(${Estado}, Municipios), length(Municipios, QtdMunicipios)`,
   controlador: async (query) => {
     const result = await query.next()
-    return { municipios: listToArray(result.Municipios), qtdMunicipios: result.QtdMunicipios }
+    return { municipios: prologlistToArray(result.Municipios), qtdMunicipios: result.QtdMunicipios }
   }
 }
 
