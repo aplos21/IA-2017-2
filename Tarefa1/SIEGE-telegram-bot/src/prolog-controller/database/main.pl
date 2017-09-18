@@ -14,9 +14,21 @@
 % capital_de(NomeCapital, NomeEstado) :- capital(NomeEstado, NomeCapital).
 
 
+%% verificar em qual classe um atom
+%% melhor se identifica.
+relacao(P, Fact) :-
+    member(Fact, [regiao, estado, capital, municipio]),
+    call(Fact, P), !.
+
 %% regiao(?Nome)
 %% Nome é o nome de uma região que existe no Brasil
 regiao(Nome) :- regiao(Nome, _).
+
+%% regiao_de(+Nome, -NomeRegiao)
+%% Nome é o nome de algum município/estado e NomeRegiao o nome da região em qu ele está
+regiao_de(Nome, NomeRegiao) :-
+    estado(Nome, _, NomeRegiao, _), !;
+    municipio(Nome, Estado), estado(Estado, _, NomeRegiao, _).
 
 %% regioes(-ListaRegioes)
 %% lista das regiões que existem no Brasil
@@ -41,6 +53,7 @@ estados_municipios(EstadosMunicipios, EstadosQtdMunicipios) :-
     map_pairs_list(EstadosMunicipios, E),
     sort(2, @>, E, EstadosQtdMunicipios).
 
+municipio(Nome) :- municipio(Nome, _).
 %% municipios(+NomeEstado, -ListaMunicipios:list(NomeEstado-Municipios))
 %% Lista os municípios que estão delimitados pelo estado de nome NomeEstado
 municipios(NomeEstado, ListaMunicipios) :-
@@ -51,6 +64,7 @@ municipios(NomeEstado, ListaMunicipios) :-
 %% O munícipio que é capital de NomeEstado é NomeCapital
 capital(NomeEstado, NomeCapital) :- estado(NomeEstado, _, _, NomeCapital).
 capital('brasil', 'brasília').
+capital(NomeCapital) :- estado(_, _, _, NomeCapital).
 
 
 %% tamanho(+NomeEstado, -Area)

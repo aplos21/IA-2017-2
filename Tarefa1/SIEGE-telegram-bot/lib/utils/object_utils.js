@@ -1,4 +1,14 @@
 /**
+ * Inicializa um objeto imutável, i.e.,
+ * não é possível alterar suas propriedades.
+ * @param {object} obj
+ * @return {object} O mesmo objeto passado mas impassível de alterações
+ */
+function createImutableObject(obj) {
+  return Object.isFrozen(obj) ? obj : Object.freeze(obj)
+}
+
+/**
  * Recupera todas as chaves de um objeto.
  * @param {object} obj
  * @return {array} As chaves em um array unidimensional
@@ -30,11 +40,10 @@ function flattenObject(obj, arr = []) {
  * Utilitário exclusivo para o 'swipl-stdio';
  * converte uma lista retornada pela query prolog
  * em um array.
- * @method PrologController#listToArray
  * @param {object} listAsObj - A representação da lista em objetos
  * @return {string[]} A lista como array de string do JS
  */
-function listToArray(listAsObj) {
+function prologlistToArray(listAsObj) {
   if (!listAsObj || typeof listAsObj !== 'object') return [];
   const list = flattenObject(listAsObj);
   list.splice(-1);
@@ -42,4 +51,9 @@ function listToArray(listAsObj) {
 }
 
 
-module.exports = { getValuesOf, flattenObject, listToArray }
+module.exports = {
+  createImutableObject,
+  getValuesOf,
+  flattenObject,
+  prologlistToArray
+}

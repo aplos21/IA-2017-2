@@ -20,21 +20,32 @@
  * THE SOFTWARE.
  */
 
+const defaultStopwords = require('./stopwords_br').words
 
-/********************************************************/
-require('dotenv').config()
-const Telegraf = require('telegraf')
-const app = new Telegraf(process.env.BOT_TOKEN)
-/********************************************************/
+/**
+ * Remover stopwords de um array de palavras.
+ * @param {string[]} tokens
+ * @param {string[]} stopwords
+ */
+const removeStopwordsFromTokens = (tokens, stopwords = defaultStopwords) => {
+  if (typeof tokens !== 'object' || typeof stopwords !== 'object') {
+    throw new TypeError('expected Arrays try: removeStopwordsFromTokens(Array[, Array])')
+  }
+  return tokens.filter(value => (value.trim()) && (!stopwords.includes(value.toLowerCase())) )
+}
 
-/*
-app.use((ctx, next) => {
-  const start = new Date()
-  return next().then(() => {
-    const ms = new Date() - start
-    console.log('[BOT] response time: %sms', ms) // log
-  })
-})
-*/
+/**
+ * Remover as stopwords brasileiras de uma string.
+ * @param {string} str Alvo da remoção.
+ * @param {boolean} [asArray=false] Se o retorno será com as palavras separadas em array.
+ * @return {string|string[]}
+ */
+const removeStopwords = (str, asArray = false) => {
+  const withoutStopWords = removeStopwordsFromTokens( str.split(' ') )
+  return asArray ? withoutStopWords : withoutStopWords.join(' ')
+}
 
-require('./src/bot')(app)
+module.exports = {
+  removeStopwordsFromTokens,
+  removeStopwords
+}

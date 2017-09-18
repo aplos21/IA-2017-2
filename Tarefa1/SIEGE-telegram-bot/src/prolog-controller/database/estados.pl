@@ -9,8 +9,9 @@
  * NomeRegiao  = nome da região em que está localizado
  * NomeCapital = nome da sua cidade/município capital
  *
- * fonte:
+ * fontes:
  * https://github.com/chandez/Estados-Cidades-IBGE
+ * http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm
  */
 
 estado('acre',      'ac', 'norte', 'rio branco').

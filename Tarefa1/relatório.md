@@ -2,7 +2,7 @@
 
 
 ### Tarefa I - SIEGE (Sistema Inteligente de Ensino de Geografia)
-> 18/08/2017 ⇒ 12/09/2017
+> 18/08/2017 ⇒ 17/09/2017
 
 ----------------------------------------
 
@@ -23,108 +23,105 @@ Os fatos disponíveis nos programas dispostos neste diretório são:
 > - `municipio(?Nome, ?NomeEstado)`
 
 Pensando nos fatos em termos de tabela, as relações de integridade referencial ficam da seguinte forma:
-<img alt="http://erdplus.com" src="SIEGE-telegram-bot/src/prolog-controller/database/diagrama-integridade-referencial.png" width="780">
+<img alt="diagrama RIR" src="SIEGE-telegram-bot/src/prolog-controller/database/images/diagrama-integridade-referencial.png" width="780">
 
 
 -------------
 
-# TODO
-<!-- https://pt.wikipedia.org/wiki/Geografia_do_Brasil -->
+# DEMO
+[@SIEGE_BR_bot](t.me/SIEGE_BR_bot)
 
-## 5 temas escolhidos e possíveis perguntas:
-<!--
-https://servicodados.ibge.gov.br/api/docs/localidades
-http://www.geonames.org/childrenJSON?geonameId=3469034
--->
-
-<!-- http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm -->
-1. [ ] *Capitais dos Estados do Brasil*
-
-<!-- https://pt.wikipedia.org/wiki/Lista_de_bandeiras_do_Brasil -->
-<!-- https://pt.wikipedia.org/wiki/Unidades_federativas_do_Brasil -->
-2. [ ] *Estados e Regiões do Brasil* (Brasil Político)
-	- Qual a bandeira de um estado
-	- Qual o mapa político do país
-
-3. [ ] *Estados e Tamanho Territorial*
-
-4. [ ] *Estados e Contingente Populacional*
-	- Qual a população de um estado
-	- Qual a população do país
-
-<!--
-https://pt.wikipedia.org/wiki/Lista_de_estados_fronteiri%C3%A7os_do_Brasil
-https://pt.wikipedia.org/wiki/Lista_de_pa%C3%ADses_lim%C3%ADtrofes_do_Brasil
-http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm
--->
-5. [ ] *Limites e Fronteiras dos Estados do Brasil*
-	- Quais cidades realizam fronteiras com quais países e em qual km
-	- Quais estados realizam fronteiras com quais países
-	- Quais regiões realizam fronteiras
-
-
-
-<!-- implementar!! -->
 # Perguntas que serão respondidas
+> - as perguntas listadas a seguir contém apenas palavras-chave que o bot entenderá _(case insensitive)_
+> - algumas palavras podem ser substituídas por seus sinônimos que estão listados em {{...}}
+> - termos entre colchetes indicam que estes são opcionais; a barra indica uma alternativa
+> - os substantivos prórprios deve iniciar em maiúsculo (como dita a gramática da língua)
 
-## *Capitais dos Estados Brasileiros*
-1.	[x] Qual é a capital de `Estado`?
-2.	[x] Qual é a capital do Brasil?
-3.	[x] A cidade `Municipio` é capital do `Estado`?
-3.	[x] A cidade `Municipio` é capital de `Estado`?
-4.	[x] Existe algum estado cuja capital tem o mesmo nome do estado?
-5.	[x] `Municipio` é a capital de qual estado?
-6.	[x] `Municipio` é a capital de `Estado`?
-6.	[x] `Municipio` é a capital do `Estado`?
-7.	[x] `Municipio` é a capital de algum estado?
+### *Capitais dos Estados Brasileiros*
+1. Qual [a] capital do/de/da `Estado`?
+2. Qual [a] capital do Brasil?
+3. [A] cidade/município [do/de] `Municipio` é capital do/de/da `Estado`?
+4. Existe/Há algum estado cuja [a] capital tem/possui o mesmo nome do estado?
+5. `Municipio` é a/o capital de qual estado?
+6. `Municipio` é a/o capital de algum estado?
+7. `Municipio` é a/o capital do/de/da `Estado`?
 
+### *Estados e Regiões*
+8.  Qual [é] [o] estado [que] tem/possui mais cidades/municípios?
+9.  Qual [é] [o] estado [que] tem/possui menos cidades/municípios?
+10. Quais estados [brasileiros] estão no/na [região] `Regiao`?
+11. Quais [são] [as] regiões [que] possuem até `Numero` estados?
+12. Quantos estados [o] Brasil tem/possui?
+13. Quantos estados a/o [região] `Regiao` delimita?
+14. Quantas/Quantos cidades/municípios o estado [do/de/da] `Estado` tem/possui?
+15. [A/O cidade/município do/de] `Municipio` está/fica em qual estado?
+16. [A/O estado/cidade/município do/de/da] `Estado`/`Municipio` está/fica na região `Regiao`?
+17. [A/O estado do/de/da] `Estado`/`Municipio` está/fica em qual região?
 
-## *Estados e Regiões*
-8.	[x] Qual é o estado que tem mais cidades?
-9.	[x] Qual é o estado que tem menos cidades?
-10.	[x] Quais são os estados que compõem a região `Regiao`?
-11.	[x] Quais são as regiões que possuem até `Numero` estados?
-12.	[x] Quantos estados tem o Brasil?
-13. [x] Quantos estados a região `Regiao` tem?
-14. [x] Quantas cidades o estado de `Estado` tem?
-14. [x] Quantas cidades o estado do `Estado` tem?
-15. [x] A cidade `Municipio` está em qual estado?
-16.	[x] O estado do `Estado` fica na região `Regiao`?
-16.	[x] O estado de `Estado` fica na região `Regiao`?
-17.	[x] `Estado` fica em qual região?
-18. [x] `Municipio` fica em qual região?
-
-
-## *Tamanho Territorial*
-19. [x] Qual é o tamanho territorial do `Estado`?
-19. [x] Qual é o tamanho territorial de `Estado`?
-20. [x] Qual é o estado de menor tamanho?
-21. [x] Qual é o estado de maior tamanho?
-22. [x] Qual é o tamanho territorial do Brasil?
-23. [x] Quais são os estados de maior e menor tamanho?
+### *Tamanho Territorial (estados)*
+18. Qual [é] [o] tamanho territorial do/de/da `Estado`?
+19. Qual estado tem/possui [o] menor tamanho [territorial]?
+20. Qual estado tem/possui [o] maior tamanho [territorial]?
+21. Qual [é] [o] tamanho territorial do Brasil?
+22. Quais [são] os estados de maior e menor tamanho [territorial]?
 
 
-## *Contingente Populacional*
-24.	[ ] Qual é a população do `Estado`? **(sem dados)**
-24.	[ ] Qual é a população de `Estado`? **(sem dados)**
-25.	[ ] Qual é a população da região `Regiao`? **(sem dados)**
-26.	[ ] Qual é o estado com maior população? **(sem dados)**
-27.	[ ] Qual é o estado com menor população? **(sem dados)**
-28.	[ ] Qual é a população do `Municipio`? **(sem dados)**
-29.	[ ] Existem estados com população inferior a `Numero` habitantes? **(sem dados)**
+<!--
+### *Contingente Populacional* **(sem dados)**
+24. Qual é a população do/de `Estado`?
+25. Qual é a população da região `Regiao`?
+26. Qual é o estado com maior população?
+27. Qual é o estado com menor população?
+28. Qual é a população do `Municipio`?
+29. Existem estados com população inferior a `Numero` habitantes?
+-->
 
-## *Limites e Fronteiras dos Estados Brasileiros*
-30.	[ ] Que estados fazem fronteira com o estado `Estado`? **(sem dados)**
-31.	[ ] Qual é o estado que faz fronteira com mais estados? **(sem dados)**
-32.	[ ] Qual é o estado que faz fronteira com menos estados? **(sem dados)**
-33.	[ ] Quais são os estados que são banhados pelo mar? **(sem dados)**
-34.	[ ] Quais são as capitais brasileiras que ficam em ilhas? **(sem dados)**
-35.	[ ] Existe algum estado que faz fronteira com apenas um estado? **(sem dados)**
-36.	[ ] Descreva um caminho rodoviário entre o estado do `Estado1` e `Estado2`, sem sair das fronteiras do Brasil. **(sem dados)**
-36.	[ ] Descreva um caminho rodoviário entre o estado de `Estado1` e `Estado2`, sem sair das fronteiras do Brasil. **(sem dados)**
+<!--
+### *Limites e Fronteiras dos Estados Brasileiros* **(sem dados)**
+30. Que estados fazem fronteira com o estado `Estado`?
+31. Qual é o estado que faz fronteira com mais estados?
+32. Qual é o estado que faz fronteira com menos estados?
+33. Quais são os estados que são banhados pelo mar?
+34. Quais são as capitais brasileiras que ficam em ilhas?
+35. Existe algum estado que faz fronteira com apenas um estado?
+36. Descreva um caminho rodoviário entre o estado do/de `Estado1` e `Estado2`, sem sair das fronteiras do Brasil.
+-->
+
+### *Extras*
+36. O que [oa] `Estado`/`Municipio`/`Regiao` é para o Brasil?
+37. Qual [é] a bandeira do/de/da `Estado`/Brasil?
 
 
+## Expressões regulares utilizadas para identificar as perguntas
+> - o texto deve ser truncado (espaços excedentes removidos) e a comparação deve ser case insensitive
+> - os termos utilizados no casamento são os sinônimos principais
 
+| no. | regex |
+|:----|:------|
+| 1   | `^(?:qual) .*\b(capital)\b.+d[oea] .+`
+| 2   | `^(?:qual) .*\b(capital)\b.+do (brasil)\b.+`
+| 3   | `^.*\b(município) (?:d[oe] )?.+ é (capital) d[oea] .+`
+| 4   | `^(existe) .*(?:algum) (estado) (cuja) .*\b(capital) .+ mesmo nome .*\bd[oe] .+`
+| 5   | `.+ (é) (?:[ao] .*)?(capital) de (qual) (estado)\b.+`
+| 6   | `.+ (é) (?:[ao] .*)?(capital) de (algum) (estado)\b.+`
+| 7   | `.+ (é) (?:[ao] .*)?(capital) d[oea] .+`
+| 8   | `^(?:qual) .*\b(estado) .+ (mais) (municípios)\b.+`
+| 9   | `^(?:qual) .*\b(estado) .+ (menos) (municípios)\b.+`
+| 10  | `^(?:quais) (estados) .*\b(estão) .+`
+| 11  | `^(?:quais) .*\b(regiões) .*\b(possuem) .*\b(até) \d+ (estados)\b.+`
+| 12  | `^(?:quantos) (estados) .*\b(brasil) (tem)\b.+`
+| 13  | `^(?:quantos) estados .*\b(?:região)? (.+) delimita\b.+`
+| 14  | `^(?:quant[oa]s) (municípios) o (estado) .+ (tem)\b.+`
+| 15  | `^.+ (fica) .+ (qual) (estado)`
+| 16  | `^.+ (fica) .*\bna (região) .+`
+| 17  | `^.+ (fica) .+ (qual) (região)`
+| 18  | `^(?:qual) .*\b(tamanho) (territorial) d[oe] (estado) .+`
+| 19  | `^(?:qual) (estado) .+ (menor) (tamanho)\b.+`
+| 20  | `^(?:qual) (estado) .+ (maior) (tamanho)\b.+`
+| 21  | `^(?:qual) .*\b(tamanho) (territorial) do (brasil)\b.+`
+| 22  | `^(?:quais) .+ (estados) .+ (maior) e (menor) (tamanho)\b.+`
+| 36  | `^(?:o que).+ (é) para .*\b(brasil)\b.+`
+| 37  | `^(?:qual) .+ bandeira d[oea] (.+)`
 
 # Consultas para as perguntas <small>(implementadas)</small>
 > - O símbolo '+' indica que a variável (que segue) deve ser uma entrada, i.e., ter valor.
@@ -137,8 +134,8 @@ http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm
 | 3   | `capital(+Estado, +Municipio)`                                              | _boolean_                        |
 | 4   | `findall(E, capital(E,E), Quais), list_nonempty(Quais, Existe).`            | __Existe__                       |
 | 5   | `capital(NomeEstado, +Municipio)`                                           | __NomeEstado__                   |
-| 6   | `capital(+Estado, +Municipio)`                                              | _boolean_                        |
-| 7   | `capital(_, +Municipio)`                                                    | _boolean_                        |
+| 6   | `capital(Estado, +Municipio)`                                               | __Estado__                       |
+| 7   | `capital(+Estado, +Municipio)`                                              | _boolean_                        |
 | 8   | `estados_municipios(_, E), first(E, Estado-QtdMunicipios).`                 | __Estado__, __QtdMunicipios__    |
 | 9   | `estados_municipios(_, E), last(E, Estado-QtdMunicipios).`                  | __Estado__, __QtdMunicipios__    |
 | 10  | `findall(E, estado(E,_,+Regiao,_), ListaEstados)`                           | __ListaEstados__                 |
@@ -147,15 +144,14 @@ http://www.suapesquisa.com/geografia/estados_capitais_brasil.htm
 | 13  | `regiao(+Regiao, QtdEstados)`                                               | __QtdEstados__                   |
 | 14  | `municipios(+Estado, Municipios), length(Municipios, QtdMunicipios)`        | __QtdMunicipios__                |
 | 15  | `municipio(+Municipio, Estado)`                                             | __Estado__                       |
-| 16  | `estado(+Estado, _, +Regiao, _)`                                            | _boolean_                        |
-| 17  | `estado(+Estado, _, Regiao, _)`                                             | __Regiao__                       |
-| 18  | `municipio(+Municipio, Estado), estado(Estado, _, Regiao, _)`               | __Regiao__                       |
-| 19  | `tamanho(+Estado, Tamanho)`                                                 | __Tamanho__                      |
-| 20  | `menor_area(MenorArea, MenorEstado).`                                       | __MenorEstado__                  |
-| 21  | `maior_area(MaiorArea, MaiorEstado).`                                       | __MaiorEstado__                  |
-| 22  | `tamanho(brasil, TamanhoTotal).`                                            | __TamanhoTotal__                 |
-| 23  | `maior_area(MaiorArea, MaiorEstado), menor_area(MenorArea, MenorEstado).`   | __MaiorEstado__, __MenorEstado__ |
-
+| 16  | `regiao_de(+Nome, +Regiao)`                                                 | _boolean_                        |
+| 17  | `regiao_de(+Nome, Regiao)`                                                  | __Regiao__                       |
+| 18  | `tamanho(+Estado, Tamanho)`                                                 | __Tamanho__                      |
+| 19  | `menor_area(MenorArea, MenorEstado).`                                       | __MenorEstado__                  |
+| 20  | `maior_area(MaiorArea, MaiorEstado).`                                       | __MaiorEstado__                  |
+| 21  | `tamanho(brasil, TamanhoTotal).`                                            | __TamanhoTotal__                 |
+| 22  | `maior_area(MaiorArea, MaiorEstado), menor_area(MenorArea, MenorEstado).`   | __MaiorEstado__, __MenorEstado__ |
+| 36  | `relacao(+Nome, Relacao)`                                                   | __Relacao__                      |
 
 
 <!--
