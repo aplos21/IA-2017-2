@@ -1,0 +1,62 @@
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[brazil]{babel}   
+\usepackage[utf8]{inputenc}  
+
+\usepackage{verbatim}
+% \usepackage{hyperref}
+\usepackage{color}
+% \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{multirow}
+\usepackage{enumitem}
+
+\newcommand{\toprule}{\hline}
+\newcommand{\midrule}{\hline}
+\newcommand{\bottomrule}{\hline}
+
+%------------- para que as referências seja tratada como section -------------%
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\section{\bibname}% <-- this line was changed from \chapter* to \section
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
+     
+\sloppy
+
+\title{Análise de Chatterbots Matemáticos}
+
+\author{Micael Levi Lima Cavalcante}
+
+
+\address{Instituto de Computação -- Universidade Federal do Amazonas (UFAM)\\
+  69.007-000 -- Manaus -- AM -- Brasil
+  \email{mllc@icomp.ufam.edu.br}
+}
+
+
+%--------------- definir cores ---------------%
+\definecolor{niceblue}{RGB}{3,17,215}
+\definecolor{githubpurple}{RGB}{110, 65, 193} 
+\definecolor{githubblue}{RGB}{0, 92, 198}
+%--------------- commands ---------------%
+\newcommand{\eu}[1]{\textcolor{githubpurple}{[eu]}\texttt{ #1}}
+\newcommand{\chatbot}[1]{\textcolor{githubblue}{[bot]}\texttt{ #1}}
+

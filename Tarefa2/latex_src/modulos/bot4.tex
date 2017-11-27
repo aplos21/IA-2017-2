@@ -1,0 +1,11 @@
+\subsection{ChatterBot Math Calculations}\label{subsec:bot4} 
+\input{img/bot4_logo}
+
+A proposta do Chatterbot Math é oferecer um bot de calculadora no chat do aplicativo Kik\footnote{O Kik é uma apicação de mensagens instantâneas, vide \url{www.kik.com}} que está disponível pra os sistemas operacional Android e iOS. Para acessá-lo basta procurar o nome dele no buscador do aplicativo. Esse chatterbot foi implementado na linguagem Python e somente em Inglês.
+
+O início da interação com ele se deu da seguinte forma:
+\input{conversas/bot4}
+\input{img/bot4_1}
+
+Após um período de testes, percebi que esse bot não suporta o cálculo do fatorial. Apesar disso, ao enviar a mensagem ``100!'', o bot não informou que ele desconhecia o perador ``!'', apenas o ignorou.
+Essa falha, nos permite obter $11$ como resultado da mensagem $10! + 1$. Porém, como o chatterbot retorna mensagens no formato \textsc{expressão = resultado}, facilmente percebemos que o fatorial não foi utilizado.
