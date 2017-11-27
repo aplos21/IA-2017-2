@@ -13,7 +13,7 @@
 ----------------------------------------
 
 <h3 align="center">
-Artigo escrito em <i>LaTex</i>, disponível em <a href="/docs">docs</a>
+Artigo escrito em <i>LaTex</i>, disponível em <a href="/latex_src">latex_src</a>
 </h3>
 
 <!-- ---------------------------- -->
